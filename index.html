@@ -1,35 +1,140 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>QR Code Generator — Single File</title>
   <style>
-    :root{--bg:#0f172a;--card:#0b1220;--accent:#06b6d4;--muted:#94a3b8}
-    *{box-sizing:border-box;font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial}
-    body{margin:0;background:linear-gradient(180deg,#071024 0%,#051025 100%);color:#e6eef6;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px}
-    .container{width:980px;max-width:100%;display:grid;grid-template-columns:1fr 360px;gap:20px}
-    .card{background:rgba(255,255,255,0.03);border-radius:12px;padding:18px;box-shadow:0 6px 18px rgba(2,6,23,0.6)}
-    h1{margin:0 0 8px;font-size:20px}
-    label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
-    input[type=text], select, input[type=number], input[type=file], textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit}
-    .row{display:flex;gap:10px}
-    button{background:var(--accent);color:#022;border:none;padding:10px 12px;border-radius:8px;cursor:pointer}
-    .muted{color:var(--muted);font-size:13px}
-    .preview{display:flex;flex-direction:column;align-items:center;gap:12px}
-    canvas{background:white;border-radius:8px}
-    .controls{display:flex;flex-direction:column;gap:10px}
-    .footer{display:flex;gap:8px;align-items:center}
-    .small{font-size:13px}
-    .actions{display:flex;gap:8px}
-    @media (max-width:980px){.container{grid-template-columns:1fr}}
+    :root {
+      --bg: #0f172a;
+      --card: #0b1220;
+      --accent: #06b6d4;
+      --muted: #94a3b8
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #071024 0%, #051025 100%);
+      color: #e6eef6;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px
+    }
+
+    .container {
+      width: 980px;
+      max-width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 20px
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: 0 6px 18px rgba(2, 6, 23, 0.6)
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 20px
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 6px
+    }
+
+    input[type=text],
+    select,
+    input[type=number],
+    input[type=file],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: transparent;
+      color: inherit
+    }
+
+    .row {
+      display: flex;
+      gap: 10px
+    }
+
+    button {
+      background: var(--accent);
+      color: #022;
+      border: none;
+      padding: 10px 12px;
+      border-radius: 8px;
+      cursor: pointer
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 13px
+    }
+
+    .preview {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px
+    }
+
+    canvas {
+      background: white;
+      border-radius: 8px
+    }
+
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .footer {
+      display: flex;
+      gap: 8px;
+      align-items: center
+    }
+
+    .small {
+      font-size: 13px
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px
+    }
+
+    @media (max-width:980px) {
+      .container {
+        grid-template-columns: 1fr
+      }
+    }
   </style>
 </head>
+
 <body>
   <div class="container">
     <div class="card">
       <h1>QR Code Generator</h1>
-      <p class="muted">Type something (URL, text, Wi‑Fi credentials) and press <strong>Generate</strong>. Includes options for size, colors, error correction and an optional logo overlay.</p>
+      <p class="muted">Type something (URL, text, Wi‑Fi credentials) and press <strong>Generate</strong>. Includes
+        options for size, colors, error correction and an optional logo overlay.</p>
 
       <div class="controls">
         <div>
@@ -72,7 +177,8 @@
         <div>
           <label for="logo">Optional logo (PNG/JPG, transparent better)</label>
           <input id="logo" type="file" accept="image/*">
-          <p class="muted small">Logo will be placed centered and scaled to fit. Keep it simple for best scanning results.</p>
+          <p class="muted small">Logo will be placed centered and scaled to fit. Keep it simple for best scanning
+            results.</p>
         </div>
 
         <div class="row">
@@ -83,7 +189,8 @@
 
       </div>
 
-      <div style="margin-top:12px;color:var(--muted);font-size:13px">Tip: for URLs, include the full <code>https://</code> so some scanners show the domain clearly.</div>
+      <div style="margin-top:12px;color:var(--muted);font-size:13px">Tip: for URLs, include the full
+        <code>https://</code> so some scanners show the domain clearly.</div>
     </div>
 
     <div class="card preview">
@@ -123,24 +230,24 @@
     let currentDataURL = null;
     let zoom = 1;
 
-    async function generate(allowEmpty=false){
+    async function generate(allowEmpty = false) {
       const value = textEl.value.trim();
-      if(!value && !allowEmpty){
+      if (!value && !allowEmpty) {
         alert('Please enter some text or URL to encode.');
         return;
       }
 
-      const size = Math.max(128, Math.min(2048, Number(sizeEl.value)||512));
+      const size = Math.max(128, Math.min(2048, Number(sizeEl.value) || 512));
       const options = {
         errorCorrectionLevel: ecEl.value || 'M',
-        margin: Number(marginEl.value)||4,
+        margin: Number(marginEl.value) || 4,
         color: { dark: darkEl.value || '#000000', light: lightEl.value || '#ffffff' },
         width: size,
       };
 
       info.textContent = 'Generating…';
 
-      try{
+      try {
         // uses QRCode.toDataURL from library
         const dataUrl = await QRCode.toDataURL(value || ' ', options);
         // draw onto canvas so we can overlay logo and control DPI
@@ -154,49 +261,49 @@
         const ctx = canvas.getContext('2d');
         // draw light background
         ctx.fillStyle = options.color.light;
-        ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
         // draw qr
-        ctx.drawImage(img,0,0,canvas.width,canvas.height);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
         // if logo supplied, overlay
         const file = logoEl.files[0];
-        if(file){
+        if (file) {
           const logoImg = new Image();
           logoImg.src = URL.createObjectURL(file);
           await logoImg.decode();
           // compute logo size — keep it ~20% of QR size or less depending on error correction
-          const maxLogoRatio = {L:0.12, M:0.18, Q:0.22, H:0.28}[options.errorCorrectionLevel] || 0.18;
+          const maxLogoRatio = { L: 0.12, M: 0.18, Q: 0.22, H: 0.28 }[options.errorCorrectionLevel] || 0.18;
           const logoMaxSize = Math.floor(canvas.width * maxLogoRatio);
           // maintain aspect
           let lw = logoImg.width, lh = logoImg.height;
           const scale = Math.min(logoMaxSize / lw, logoMaxSize / lh, 1);
           lw = Math.round(lw * scale);
           lh = Math.round(lh * scale);
-          const x = Math.round((canvas.width - lw)/2);
-          const y = Math.round((canvas.height - lh)/2);
+          const x = Math.round((canvas.width - lw) / 2);
+          const y = Math.round((canvas.height - lh) / 2);
           // optional white padding background for logo to improve contrast
           const pad = Math.round(Math.min(12, canvas.width * 0.03));
           ctx.fillStyle = options.color.light;
-          ctx.fillRect(x-pad, y-pad, lw+pad*2, lh+pad*2);
+          ctx.fillRect(x - pad, y - pad, lw + pad * 2, lh + pad * 2);
           ctx.drawImage(logoImg, x, y, lw, lh);
           URL.revokeObjectURL(logoImg.src);
         }
 
         currentDataURL = canvas.toDataURL('image/png');
         info.textContent = `Ready — ${size}×${size} · ErrorCorr=${options.errorCorrectionLevel}`;
-      }catch(err){
+      } catch (err) {
         console.error(err);
         alert('Failed to generate QR: ' + (err && err.message || err));
         info.textContent = 'Error';
       }
     }
 
-    generateBtn.addEventListener('click', ()=>generate());
+    generateBtn.addEventListener('click', () => generate());
 
-    downloadBtn.addEventListener('click', ()=>{
-      if(!currentDataURL){ generate(true).then(()=>download()); return; }
+    downloadBtn.addEventListener('click', () => {
+      if (!currentDataURL) { generate(true).then(() => download()); return; }
       download();
-      function download(){
+      function download() {
         const a = document.createElement('a');
         a.href = currentDataURL;
         a.download = 'qr.png';
@@ -206,30 +313,31 @@
       }
     });
 
-    copyBtn.addEventListener('click', async ()=>{
-      try{
+    copyBtn.addEventListener('click', async () => {
+      try {
         // ensure up to date
-        if(!currentDataURL){ await generate(true); }
+        if (!currentDataURL) { await generate(true); }
         const res = await fetch(currentDataURL);
         const blob = await res.blob();
-        await navigator.clipboard.write([new ClipboardItem({[blob.type]: blob})]);
+        await navigator.clipboard.write([new ClipboardItem({ [blob.type]: blob })]);
         alert('Image copied to clipboard — paste where supported.');
-      }catch(e){
+      } catch (e) {
         console.error(e);
         alert('Copy failed. Your browser may not support clipboard image writes. You can download instead.');
       }
     });
 
-    zoomIn.addEventListener('click', ()=>{ zoom = Math.min(3, zoom + 0.25); canvas.style.transform = `scale(${zoom})`; });
-    zoomOut.addEventListener('click', ()=>{ zoom = Math.max(0.5, zoom - 0.25); canvas.style.transform = `scale(${zoom})`; });
+    zoomIn.addEventListener('click', () => { zoom = Math.min(3, zoom + 0.25); canvas.style.transform = `scale(${zoom})`; });
+    zoomOut.addEventListener('click', () => { zoom = Math.max(0.5, zoom - 0.25); canvas.style.transform = `scale(${zoom})`; });
 
     // small convenience: generate when user presses Ctrl+Enter
-    document.addEventListener('keydown', (e)=>{ if((e.ctrlKey||e.metaKey) && e.key === 'Enter'){ generate(); } });
+    document.addEventListener('keydown', (e) => { if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') { generate(); } });
 
     // example placeholder
-    textEl.value = 'https://example.com';
+    textEl.value = 'https://qr coder.com';
     // auto generate initial preview
     generate(true);
   </script>
 </body>
+
 </html>
